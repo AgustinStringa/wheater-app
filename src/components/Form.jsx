@@ -1,21 +1,53 @@
 import React, { useState } from "react";
 
-const Form = () => {
+const Form = ({ setFormData }) => {
   const [searchData, setSearchData] = useState({
     city: "",
     country: "",
+    textCountry: "",
   });
+  const [error, setError] = useState(false);
 
-  const { city, country } = searchData;
+  const { city, country, textCountry } = searchData;
 
   const handleInputChange = (evt) => {
-    setSearchData({
-      ...searchData,
-      [`${evt.target.name}`]: `${evt.target.value}`,
+    const option = document.querySelector(`option[value="${evt.target.value}"]`)
+      ? document.querySelector(`option[value="${evt.target.value}"]`)
+      : null;
+    if (option) {
+      setSearchData({
+        ...searchData,
+        [`${evt.target.name}`]: `${evt.target.value}`,
+        textCountry: option.textContent,
+      });
+    } else {
+      setSearchData({
+        ...searchData,
+        [`${evt.target.name}`]: `${evt.target.value}`,
+      });
+    }
+  };
+
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    if (!city.trim() || !country.trim() || !textCountry.trim()) {
+      setError(true);
+      return;
+    }
+    setError(false);
+    setFormData({
+      city,
+      country,
+      textCountry,
     });
   };
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
+      {error ? (
+        <p className="alert alert-danger">
+          Completa ambos campos para realizar una búsqueda
+        </p>
+      ) : null}
       <div className="input-field col s12">
         <i className="material-icons prefix">apartment</i>
         <input

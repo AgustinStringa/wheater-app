@@ -1,5 +1,6 @@
 html {
   box-sizing: border-box;
+  color: rgb(247, 240, 230);
 }
 *,
 *::after,
@@ -91,4 +92,18 @@ input[type="text"]:not(.browser-default):focus:not([readonly]) + label {
 }
 i {
   color: #fff;
+}
+.alert {
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  padding: 0.75rem 1.25rem;
+  position: relative;
+  text-align: center;
+}
+.alert-danger {
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+  color: #721c24;
 }
