@@ -2,10 +2,10 @@ import Header from "./components/Header";
 import Form from "./components/Form";
 import ResultPanel from "./components/ResultPanel";
 import React, { useState, useEffect } from 'react';
+import { API_KEY } from './credentials'
 
 
 function App() {
-  const API_KEY = '34a3fc29cd6b6907386c6dcad346f7e4';
   const [formData, setFormData] = useState({
     city: '',
     country: '',
