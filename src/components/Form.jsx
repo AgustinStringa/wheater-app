@@ -1,36 +1,24 @@
 import React, { useState } from "react";
 
-const Form = ({ setFormData }) => {
+const Form = ({ setFormData, setConsultar }) => {
   const [searchData, setSearchData] = useState({
     city: "",
     country: "",
-    textCountry: "",
   });
   const [error, setError] = useState(false);
 
-  const { city, country, textCountry } = searchData;
+  const { city, country } = searchData;
 
   const handleInputChange = (evt) => {
-    const option = document.querySelector(`option[value="${evt.target.value}"]`)
-      ? document.querySelector(`option[value="${evt.target.value}"]`)
-      : null;
-    if (option) {
-      setSearchData({
-        ...searchData,
-        [`${evt.target.name}`]: `${evt.target.value}`,
-        textCountry: option.textContent,
-      });
-    } else {
-      setSearchData({
-        ...searchData,
-        [`${evt.target.name}`]: `${evt.target.value}`,
-      });
-    }
+    setSearchData({
+      ...searchData,
+      [`${evt.target.name}`]: `${evt.target.value}`,
+    });
   };
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    if (!city.trim() || !country.trim() || !textCountry.trim()) {
+    if (!city.trim() || !country.trim()) {
       setError(true);
       return;
     }
@@ -38,8 +26,8 @@ const Form = ({ setFormData }) => {
     setFormData({
       city,
       country,
-      textCountry,
     });
+    setConsultar(true);
   };
   return (
     <form onSubmit={handleSubmit}>

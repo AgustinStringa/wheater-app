@@ -66,6 +66,9 @@ input[type="text"]:not(.browser-default):focus:not([readonly]) + label {
   text-align: center;
   text-emphasis: left;
 }
+.card-panel {
+  color: #222;
+}
 .card-panel h2 {
   font-size: 1.6rem;
   text-align: center;
@@ -76,6 +79,7 @@ input[type="text"]:not(.browser-default):focus:not([readonly]) + label {
 }
 .temperatura {
   font-size: 4rem !important;
+  margin: 3rem 0;
 }
 .temperatura span {
   font-size: 2rem !important;
@@ -106,4 +110,14 @@ i {
   background-color: #f8d7da;
   border-color: #f5c6cb;
   color: #721c24;
+}
+
+/**
+collapsible
+*/
+.collapsible-body {
+  background-color: white;
+}
+.span-title {
+  font-weight: bold;
 }
