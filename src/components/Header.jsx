@@ -4,15 +4,11 @@ const Header = () => {
   return (
     <header>
       <nav>
-        <div className="nav-wrapper">
-          <a
-            href="#!"
-            className="brand-logo card-panel teal accent-4 white-text center-align"
-            style={{ marginTop: 0, fontSize: "3rem" }}
-          >
+        <a href="#!">
+          <h1 className=" teal accent-4 white-text center-align">
             React Weather App
-          </a>
-        </div>
+          </h1>
+        </a>
       </nav>
     </header>
   );

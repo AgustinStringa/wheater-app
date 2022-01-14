@@ -1,6 +1,7 @@
 import React from "react";
 import MasDatos from "./MasDatos";
 import { toCelsius, firstUpperCase } from "../helpers/helper-result-panel";
+import PropTypes from "prop-types";
 
 const ResultPanel = ({
   apiData: {
@@ -34,7 +35,7 @@ const ResultPanel = ({
         <p>Temperatura Mínima: {toCelsius(temp_min)} °C</p>
       </div>
       <MasDatos
-        feels_like={toCelsius(feels_like)}
+        feels_like={Number(toCelsius(feels_like))}
         main={main}
         description={firstUpperCase(description)}
         wind={{ speed, deg, gust }}
@@ -44,5 +45,10 @@ const ResultPanel = ({
     </>
   );
 };
-
+/**
+ * apiData: Objeto con la respuesta de la API. se utiliza para visibilizar la data en este componente.
+ */
+ResultPanel.propTypes = {
+  apiData: PropTypes.object.isRequired,
+};
 export default ResultPanel;

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 
 const Form = ({ setFormData, setConsultar }) => {
   const [searchData, setSearchData] = useState({
@@ -79,5 +80,12 @@ const Form = ({ setFormData, setConsultar }) => {
     </form>
   );
 };
-
+/**
+ * setFormData: actualiza uno de los state de la app, el que se encarga de almacenar la data del formulario
+ * setConsultar: actualiza state booleano que determina si se debe ejecutar el useEffect de consulta a la api
+ */
+Form.propTypes = {
+  setFormData: PropTypes.func.isRequired,
+  setConsultar: PropTypes.func.isRequired,
+};
 export default Form;

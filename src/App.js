@@ -1,8 +1,10 @@
+import React, { useState, useEffect } from 'react';
+import { API_KEY } from './credentials'
 import Header from "./components/Header";
 import Form from "./components/Form";
 import ResultPanel from "./components/ResultPanel";
-import React, { useState, useEffect } from 'react';
-import { API_KEY } from './credentials'
+import NotFound from "./components/NotFound";
+import Footer from "./components/Footer";
 
 
 function App() {
@@ -27,6 +29,7 @@ function App() {
       const data = await response.json();
       if (data.cod === '404') {
         setErrorSearch(true);
+        setApiData(null);
         return;
       }
       console.log(data);
@@ -59,22 +62,24 @@ function App() {
   return (
     <>
       <Header></Header>
-      <div className="contenedor-form">
-        <div className="container">
-          <div className="row">
-            <div className="col m6 s12">
-              <Form setFormData={setFormData} setConsultar={setConsultar}></Form>
+      <main>
+        <div className="contenedor-form">
+          <div className="container">
+            <div className="row">
+              <div className="col m6 s12">
+                <Form setFormData={setFormData} setConsultar={setConsultar}></Form>
+              </div>
+              {/*collumn 1*/}
+              <div className="col m6 s12">
+                {apiData && !loading ? <ResultPanel apiData={apiData}></ResultPanel> : null}
+                {errorSearch && !loading ? <NotFound></NotFound> : null}
+              </div>
+              {/*collumn 2*/}
             </div>
-            {/*collumn 1*/}
-            <div className="col m6 s12">
-              {apiData && !loading ? <ResultPanel apiData={apiData}></ResultPanel> : null}
-              {errorSearch ? <p>No encontrado</p> : null}
-            </div>
-            {/*collumn 2*/}
           </div>
         </div>
-      </div>
-
+      </main>
+      <Footer></Footer>
     </>
   );
 }

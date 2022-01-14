@@ -11,16 +11,26 @@ html {
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  /* font-family: sans-serif; */
   /* background-color: rgb(61, 61, 61); */
-  background-color: rgb(247, 240, 230);
+  /* background-color: rgb(247, 240, 230); */
 }
-
+nav {
+  all: unset !important;
+}
+nav a {
+  display: block;
+}
 nav .brand-logo {
   display: block;
   text-align: center;
-  position: relative;
 }
+h1 {
+  margin: 0;
+  padding: 1rem;
+  font-size: 3rem;
+}
+
 .input-field label {
   color: white;
 }
@@ -120,4 +130,21 @@ collapsible
 }
 .span-title {
   font-weight: bold;
+}
+
+/**/
+.p-not-found {
+  margin-bottom: 0;
+}
+.icon-not-found {
+  color: #333;
+  font-size: 4rem;
+}
+/*footer*/
+footer {
+  padding-bottom: 1rem;
+}
+.footer-link {
+  color: #015047;
+  text-decoration: underline;
 }

@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import M from "materialize-css";
+import PropTypes from "prop-types";
 
 const MasDatos = ({
   feels_like,
@@ -72,6 +73,17 @@ const MasDatos = ({
       </ul>
     </>
   );
+};
+/**
+ * todas propiedades del objeto de respuest. Estas vienen desde la app pero llegan al component por medio del component ResultPanel, ya que este se implementa desde ahí.
+ */
+MasDatos.propTypes = {
+  feels_like: PropTypes.number,
+  main: PropTypes.string,
+  description: PropTypes.string,
+  wind: PropTypes.object,
+  humidity: PropTypes.number,
+  pressure: PropTypes.number,
 };
 
 export default MasDatos;
