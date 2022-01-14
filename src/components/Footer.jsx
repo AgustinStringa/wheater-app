@@ -16,8 +16,8 @@ const Footer = () => {
                 alt="sitio web instructor del curso"
               >
                 Juan Pablo de la Torre Valdez
-              </a>
-              . Utilizando la API{" "}
+              </a>{" "}
+              utilizando la API{" "}
               <a
                 className="footer-link"
                 href="https://openweathermap.org/"
@@ -31,35 +31,17 @@ const Footer = () => {
             <h5 className="">Links</h5>
             <ul>
               <li>
-                <a className=" text-lighten-3" href="#!">
-                  Link 1
+                <a className="footer-link text-lighten-3" href="#!">
+                  LinkedIn
                 </a>
               </li>
               <li>
-                <a className=" text-lighten-3" href="#!">
-                  Link 2
-                </a>
-              </li>
-              <li>
-                <a className="text-lighten-3" href="#!">
-                  Link 3
-                </a>
-              </li>
-              <li>
-                <a className=" text-lighten-3" href="#!">
-                  Link 4
+                <a className="footer-link text-lighten-3" href="#!">
+                  GitHub
                 </a>
               </li>
             </ul>
           </div>
-        </div>
-      </div>
-      <div className="footer-copyright">
-        <div className="container">
-          © 2014 Copyright Text
-          <a className=" text-lighten-4 right" href="#!">
-            More Links
-          </a>
         </div>
       </div>
     </footer>
