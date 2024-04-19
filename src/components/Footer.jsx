@@ -31,12 +31,18 @@ const Footer = () => {
             <h5 className="">Links</h5>
             <ul>
               <li>
-                <a className="footer-link text-lighten-3" href="#!">
+                <a
+                  className="footer-link text-lighten-3"
+                  href="https://www.linkedin.com/in/agustin-stringa-01718a212/"
+                >
                   LinkedIn
                 </a>
               </li>
               <li>
-                <a className="footer-link text-lighten-3" href="#!">
+                <a
+                  className="footer-link text-lighten-3"
+                  href="https://github.com/AgustinStringa"
+                >
                   GitHub
                 </a>
               </li>

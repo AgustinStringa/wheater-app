@@ -61,25 +61,27 @@ function App() {
   }, [consultar, city, country])
   return (
     <>
-      <Header></Header>
-      <main>
-        <div className="contenedor-form">
-          <div className="container">
-            <div className="row">
-              <div className="col m6 s12">
-                <Form setFormData={setFormData} setConsultar={setConsultar}></Form>
+      <div className='main-grid'>
+        <Header></Header>
+        <main>
+          <div className="contenedor-form">
+            <div className="container">
+              <div className="row">
+                <div className="col m6 s12">
+                  <Form setFormData={setFormData} setConsultar={setConsultar}></Form>
+                </div>
+                {/*collumn 1*/}
+                <div className="col m6 s12">
+                  {apiData && !loading ? <ResultPanel apiData={apiData}></ResultPanel> : null}
+                  {errorSearch && !loading ? <NotFound></NotFound> : null}
+                </div>
+                {/*collumn 2*/}
               </div>
-              {/*collumn 1*/}
-              <div className="col m6 s12">
-                {apiData && !loading ? <ResultPanel apiData={apiData}></ResultPanel> : null}
-                {errorSearch && !loading ? <NotFound></NotFound> : null}
-              </div>
-              {/*collumn 2*/}
             </div>
           </div>
-        </div>
-      </main>
-      <Footer></Footer>
+        </main>
+        <Footer></Footer>
+      </div>
     </>
   );
 }

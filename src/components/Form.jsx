@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
+import arrayOptions from "../helpers/helper-form";
 
 const Form = ({ setFormData, setConsultar }) => {
   const [searchData, setSearchData] = useState({
@@ -60,13 +61,18 @@ const Form = ({ setFormData, setConsultar }) => {
           <option value="" disabled>
             --Seleccione un país--
           </option>
-          <option value="US">Estados Unidos</option>
+          {/* <option value="US">Estados Unidos</option>
           <option value="MX">México</option>
           <option value="AR">Argentina</option>
           <option value="CO">Colombia</option>
           <option value="CR">Costa Rica</option>
           <option value="ES">España</option>
-          <option value="PE">Perú</option>
+          <option value="PE">Perú</option> */}
+          {arrayOptions.map((option) => (
+            <option key={option.code} value={option.code}>
+              {option.country}
+            </option>
+          ))}
         </select>
         <label htmlFor="select-country">Country</label>
       </div>

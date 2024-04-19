@@ -2,29 +2,41 @@ html {
   box-sizing: border-box;
   color: rgb(247, 240, 230);
 }
+
 *,
 *::after,
 *::before {
   box-sizing: inherit;
 }
 
+.main-grid {
+  height: 100vh;
+  display: grid;
+  grid-template-rows: 5rem 1fr 1fr;
+}
+
 body {
   margin: 0;
   padding: 0;
+  height: 100vh;
   /* font-family: sans-serif; */
   /* background-color: rgb(61, 61, 61); */
   /* background-color: rgb(247, 240, 230); */
 }
+
 nav {
   all: unset !important;
 }
+
 nav a {
   display: block;
 }
+
 nav .brand-logo {
   display: block;
   text-align: center;
 }
+
 h1 {
   margin: 0;
   padding: 1rem;
@@ -35,7 +47,7 @@ h1 {
   color: white;
 }
 
-.input-field input[type="text"]:focus + label {
+.input-field input[type="text"]:focus+label {
   color: white;
 }
 
@@ -48,12 +60,14 @@ input[type="text"]:not(.browser-default) {
   border-bottom: 1px solid white;
   color: white;
 }
+
 input[type="text"]:not(.browser-default):focus:not([readonly]) {
   border-bottom: 1px solid white;
   -webkit-box-shadow: 0 1px 0 0 white;
   box-shadow: 0 1px 0 0 white;
 }
-input[type="text"]:not(.browser-default):focus:not([readonly]) + label {
+
+input[type="text"]:not(.browser-default):focus:not([readonly])+label {
   color: white;
 }
 
@@ -62,13 +76,16 @@ input[type="text"]:not(.browser-default):focus:not([readonly]) + label {
   background-color: #03a9f4;
   background-color: #00796b;
 }
+
 .mensaje {
   text-align: center;
   font-size: 2rem;
 }
+
 .buscador i {
   width: 100%;
 }
+
 .error {
   padding: 1rem !important;
   color: white;
@@ -76,21 +93,26 @@ input[type="text"]:not(.browser-default):focus:not([readonly]) + label {
   text-align: center;
   text-emphasis: left;
 }
+
 .card-panel {
   color: #222;
 }
+
 .card-panel h2 {
   font-size: 1.6rem;
   text-align: center;
 }
+
 .card-panel p {
   text-align: center;
   font-size: 1.4rem;
 }
+
 .temperatura {
   font-size: 4rem !important;
   margin: 3rem 0;
 }
+
 .temperatura span {
   font-size: 2rem !important;
   vertical-align: super;
@@ -99,14 +121,17 @@ input[type="text"]:not(.browser-default):focus:not([readonly]) + label {
 .btn-block {
   display: block !important;
 }
+
 .error {
   padding: 1rem !important;
   text-align: center !important;
   color: #fff !important;
 }
+
 i {
   color: #fff;
 }
+
 .alert {
   border: 1px solid transparent;
   border-radius: 0.25rem;
@@ -116,6 +141,7 @@ i {
   position: relative;
   text-align: center;
 }
+
 .alert-danger {
   background-color: #f8d7da;
   border-color: #f5c6cb;
@@ -128,6 +154,7 @@ collapsible
 .collapsible-body {
   background-color: white;
 }
+
 .span-title {
   font-weight: bold;
 }
@@ -136,14 +163,17 @@ collapsible
 .p-not-found {
   margin-bottom: 0;
 }
+
 .icon-not-found {
   color: #333;
   font-size: 4rem;
 }
+
 /*footer*/
 footer {
   padding-bottom: 1rem;
 }
+
 .footer-link {
   color: #015047;
   text-decoration: underline;
