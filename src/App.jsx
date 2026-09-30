@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { API_KEY } from './credentials'
-import Header from "./components/Header";
-import Form from "./components/Form";
-import ResultPanel from "./components/ResultPanel";
-import NotFound from "./components/NotFound";
-import Footer from "./components/Footer";
-
+import Header from './components/Header';
+import Form from './components/Form';
+import ResultPanel from './components/ResultPanel';
+import NotFound from './components/NotFound';
+import Footer from './components/Footer';
+import { weatherService, CityNotFoundError } from './services';
 
 function App() {
   const [formData, setFormData] = useState({
     city: '',
     country: '',
-  })
+  });
   const [consultar, setConsultar] = useState(false);
   const [apiData, setApiData] = useState(null);
   const { city, country } = formData;
@@ -19,49 +18,46 @@ function App() {
   const [errorSearch, setErrorSearch] = useState(false);
 
   useEffect(() => {
-    const consultarApi = async () => {
-      const URL_BASE = `https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}`;
-      const response = await fetch(URL_BASE, {
-        method: 'GET',
-        mode: 'cors',
-        Accept: "application/json",
-      });
-      const data = await response.json();
-      if (data.cod === '404') {
-        setErrorSearch(true);
-        setApiData(null);
-        return;
-      }
-      console.log(data);
-      setErrorSearch(false);
-      const { name, main: { temp, temp_max, temp_min, feels_like, humidity, pressure }, weather: [{ main, description, icon }], wind: { speed, deg, gust } } = data;
-      setApiData({
-        name,
-        temp,
-        temp_max,
-        temp_min,
-        feels_like,
-        main,
-        description,
-        icon,
-        speed,
-        deg,
-        gust,
-        humidity,
-        pressure
-      })
-    }
-    if (consultar) {
+    if (!consultar) return;
+
+    const controller = new AbortController();
+
+    const fetchWeather = async () => {
       setLoading(true);
-      consultarApi();
-      setTimeout(() => {
+      setErrorSearch(false);
+
+      try {
+        const data = await weatherService.getWeatherByCity(city, country, {
+          signal: controller.signal,
+        });
+        setApiData(data);
+        setErrorSearch(false);
+      } catch (error) {
+        if (error.name === 'AbortError') return;
+
+        if (error instanceof CityNotFoundError) {
+          setErrorSearch(true);
+        } else {
+          console.error('Error al consultar el clima:', error.message);
+          setErrorSearch(true);
+        }
+        setApiData(null);
+      } finally {
         setLoading(false);
-      }, 2000)
-    }
-  }, [consultar, city, country])
+        setConsultar(false);
+      }
+    };
+
+    fetchWeather();
+
+    return () => {
+      controller.abort();
+    };
+  }, [consultar, city, country]);
+
   return (
     <>
-      <div className='main-grid'>
+      <div className="main-grid">
         <Header></Header>
         <main>
           <div className="contenedor-form">
