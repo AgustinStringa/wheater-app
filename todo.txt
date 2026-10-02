@@ -1,0 +1,16 @@
+desarrollar a modo de sdd, con un formato de spec
+- agregar una funcionalidad de copiado a portapapeles o compartir via whatsapp
+- revisar api key y darlo de baja. solicitar uno nuevo
+- agregar feedback mientras se realizan las consultas
+- revisar unificacion de idioma o forma de internacionalizacion
+- revisar codigo y optimizarlo
+- agrgar tests
+- extraer logica a un api service
+- agregar manejo de errores en todas las instancias
+- hacer que la app sea responsive
+- eliminar codigo duplicado
+- estandarizar los estilos
+- agregar un tema oscuro
+- hacer enlaces target _blank
+- revisar uso de api y extender a mas de un duplicado
+- armar .env y -env.example

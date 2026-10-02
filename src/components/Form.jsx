@@ -47,7 +47,7 @@ const Form = ({ setFormData, setConsultar }) => {
           value={city}
           onChange={handleInputChange}
         />
-        <label htmlFor="input-city">City</label>
+        <label htmlFor="input-city">Ciudad</label>
       </div>
       <div className="input-field col s12">
         <i className="material-icons prefix flag">flag</i>
@@ -61,20 +61,13 @@ const Form = ({ setFormData, setConsultar }) => {
           <option value="" disabled>
             --Seleccione un país--
           </option>
-          {/* <option value="US">Estados Unidos</option>
-          <option value="MX">México</option>
-          <option value="AR">Argentina</option>
-          <option value="CO">Colombia</option>
-          <option value="CR">Costa Rica</option>
-          <option value="ES">España</option>
-          <option value="PE">Perú</option> */}
           {arrayOptions.map((option) => (
             <option key={option.code} value={option.code}>
               {option.country}
             </option>
           ))}
         </select>
-        <label htmlFor="select-country">Country</label>
+        <label htmlFor="select-country">País</label>
       </div>
 
       <div className="input-field col s12" style={{ textAlign: "right" }}>

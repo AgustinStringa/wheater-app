@@ -1,10 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import Header from './components/Header';
 import Form from './components/Form';
 import ResultPanel from './components/ResultPanel';
 import NotFound from './components/NotFound';
-import Footer from './components/Footer';
+import { Header, Footer } from '../shared';
 import { weatherService, CityNotFoundError } from './services';
+
+const navLinks = [
+  { label: "Inicio", href: "#!", active: true },
+  { label: "API OpenWeather", href: "https://openweathermap.org/api", target: "_blank" },
+];
+
+const footerLinks = [
+  { label: "Documentación API", href: "https://openweathermap.org/api", target: "_blank" },
+  { label: "Curso React - Código con Juan", href: "https://codigoconjuan.com/", target: "_blank" },
+];
 
 function App() {
   const [formData, setFormData] = useState({
@@ -58,7 +67,11 @@ function App() {
   return (
     <>
       <div className="main-grid">
-        <Header></Header>
+        <Header
+          title="React Weather App"
+          variant="teal"
+          navLinks={navLinks}
+        />
         <main>
           <div className="contenedor-form">
             <div className="container">
@@ -66,17 +79,20 @@ function App() {
                 <div className="col m6 s12">
                   <Form setFormData={setFormData} setConsultar={setConsultar}></Form>
                 </div>
-                {/*collumn 1*/}
                 <div className="col m6 s12">
                   {apiData && !loading ? <ResultPanel apiData={apiData}></ResultPanel> : null}
                   {errorSearch && !loading ? <NotFound></NotFound> : null}
                 </div>
-                {/*collumn 2*/}
               </div>
             </div>
           </div>
         </main>
-        <Footer></Footer>
+        <Footer
+          title="React Weather App"
+          description="Aplicación de consulta de clima realizada utilizando la API de OpenWeatherMap."
+          variant="teal"
+          links={footerLinks}
+        />
       </div>
     </>
   );
