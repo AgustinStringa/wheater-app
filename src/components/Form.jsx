@@ -59,7 +59,7 @@ const Form = ({ setFormData, setConsultar }) => {
           onChange={handleInputChange}
         >
           <option value="" disabled>
-            --Seleccione un país--
+            Seleccione un país
           </option>
           {arrayOptions.map((option) => (
             <option key={option.code} value={option.code}>
