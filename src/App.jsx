@@ -7,7 +7,6 @@ import { weatherService, CityNotFoundError } from './services';
 
 const navLinks = [
   { label: "Inicio", href: "#!", active: true },
-  { label: "API OpenWeather", href: "https://openweathermap.org/api", target: "_blank" },
 ];
 
 const footerLinks = [
