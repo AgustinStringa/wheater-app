@@ -65,13 +65,13 @@ function App() {
 
   return (
     <>
-      <div className="main-grid">
+      <div className="flex min-h-dvh flex-col">
         <Header
           title="React Weather App"
           variant="teal"
           navLinks={navLinks}
         />
-        <main>
+        <main className="flex-1">
           <div className="contenedor-form">
             <div className="container">
               <div className="row">

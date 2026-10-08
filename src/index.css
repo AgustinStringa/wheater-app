@@ -11,16 +11,9 @@ html {
   box-sizing: inherit;
 }
 
-.main-grid {
-  height: 100vh;
-  display: grid;
-  grid-template-rows: 5rem 1fr 1fr;
-}
-
 body {
   margin: 0;
   padding: 0;
-  height: 100vh;
   /* font-family: sans-serif; */
   /* background-color: rgb(61, 61, 61); */
   /* background-color: rgb(247, 240, 230); */
