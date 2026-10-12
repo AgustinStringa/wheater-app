@@ -1,0 +1,4 @@
+- [x] limpiar valores
+- [x] rosario como placeholder
+- [x] restablecer colores y ajustar layout para que los tome
+- [x] siteni a react icons recuperarlo (iconos SVG nativos implementados)

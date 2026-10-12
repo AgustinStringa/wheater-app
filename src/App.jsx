@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import Form from './components/Form';
-import ResultPanel from './components/ResultPanel';
-import NotFound from './components/NotFound';
-import { Header, Footer } from '../shared';
-import { weatherService, CityNotFoundError } from './services';
+import React, { useState, useEffect } from "react";
+import Form from "./components/Form";
+import ResultPanel from "./components/ResultPanel";
+import NotFound from "./components/NotFound";
+import { Header, Footer, Spinner } from "../shared";
+import { weatherService, CityNotFoundError } from "./services";
 
 const navLinks = [
   { label: "Inicio", href: "#!", active: true },
@@ -16,8 +16,8 @@ const footerLinks = [
 
 function App() {
   const [formData, setFormData] = useState({
-    city: '',
-    country: '',
+    city: "",
+    country: "",
   });
   const [consultar, setConsultar] = useState(false);
   const [apiData, setApiData] = useState(null);
@@ -41,12 +41,12 @@ function App() {
         setApiData(data);
         setErrorSearch(false);
       } catch (error) {
-        if (error.name === 'AbortError') return;
+        if (error.name === "AbortError") return;
 
         if (error instanceof CityNotFoundError) {
           setErrorSearch(true);
         } else {
-          console.error('Error al consultar el clima:', error.message);
+          console.error("Error al consultar el clima:", error.message);
           setErrorSearch(true);
         }
         setApiData(null);
@@ -63,37 +63,73 @@ function App() {
     };
   }, [consultar, city, country]);
 
+  const handleLimpiarValores = () => {
+    setFormData({ city: "", country: "" });
+    setApiData(null);
+    setErrorSearch(false);
+  };
+
   return (
-    <>
-      <div className="flex min-h-dvh flex-col">
-        <Header
-          title="React Weather App"
-          variant="teal"
-          navLinks={navLinks}
-        />
-        <main className="flex-1">
-          <div className="contenedor-form">
-            <div className="container">
-              <div className="row">
-                <div className="col m6 s12">
-                  <Form setFormData={setFormData} setConsultar={setConsultar}></Form>
+    <div className="flex min-h-dvh flex-col bg-teal-50/20 text-slate-800">
+      <Header
+        title="React Weather App"
+        theme="weather"
+        navLinks={navLinks}
+      />
+
+      <div className="min-h-full w-full flex-1 px-4 py-8">
+        <main className="mx-auto w-full max-w-5xl">
+          <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-12">
+            {/* Columna Izquierda: Formulario de Búsqueda */}
+            <div className="lg:col-span-5">
+              <Form
+                setFormData={setFormData}
+                setConsultar={setConsultar}
+                onLimpiar={handleLimpiarValores}
+              />
+            </div>
+
+            {/* Columna Derecha: Panel de Resultados o Estados */}
+            <div className="lg:col-span-7">
+              {loading && (
+                <div className="my-12 flex justify-center">
+                  <Spinner variant="chase" color="#00796b" text="Consultando pronóstico del clima..." />
                 </div>
-                <div className="col m6 s12">
-                  {apiData && !loading ? <ResultPanel apiData={apiData}></ResultPanel> : null}
-                  {errorSearch && !loading ? <NotFound></NotFound> : null}
+              )}
+
+              {apiData && !loading ? (
+                <ResultPanel apiData={apiData} />
+              ) : null}
+
+              {errorSearch && !loading ? (
+                <NotFound />
+              ) : null}
+
+              {!apiData && !errorSearch && !loading && (
+                <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-teal-200 bg-white/70 p-12 text-center shadow-xs">
+                  <div className="mb-3 flex h-14 w-14 items-center justify-center rounded-2xl bg-teal-50 text-2xl">
+                    ⛅
+                  </div>
+                  <h3 className="text-base font-bold text-slate-700">
+                    Elige una ciudad y un país
+                  </h3>
+                  <p className="mt-1 max-w-xs text-xs text-slate-500">
+                    El pronóstico meteorológico detallado aparecerá aquí una vez realizada la búsqueda.
+                  </p>
                 </div>
-              </div>
+              )}
             </div>
           </div>
         </main>
-        <Footer
-          title="React Weather App"
-          description="Aplicación de consulta de clima realizada utilizando la API de OpenWeatherMap."
-          variant="teal"
-          links={footerLinks}
-        />
       </div>
-    </>
+
+      <Footer
+        title="React Weather App"
+        description="Aplicación de consulta de clima realizada utilizando la API de OpenWeatherMap."
+        theme="weather"
+        links={footerLinks}
+      />
+    </div>
   );
 }
 
